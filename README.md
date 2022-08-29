@@ -25,20 +25,7 @@ How to run the development server:
 How to prepare (create and migrate) DB for `development` and `test` environments:
 
 ```
-% bundle exec hanami db prepare
-
-% HANAMI_ENV=test bundle exec hanami db prepare
-```
-
-Explore Hanami [guides](https://guides.hanamirb.org/), [API docs](http://docs.hanamirb.org/1.3.5/), or jump in [chat](http://chat.hanamirb.org) for help. Enjoy! 🌸
-
-
-# Concepts
-
-[Documentation](https://guides.hanamirb.org/v1.3/introduction/getting-started/)
-
-Our project can have many applications on it. All of them inside the app folder.
-Every action specified in the routes is a class specification, this isn't like RoR usage.
+% bundle exec hanami db prhttps://guides.hanamirb.org/v1.3/introduction/getting-started/the routes is a class specification, this isn't like RoR usage.
 The view is a ruby class.
 
 ```ruby
@@ -76,7 +63,7 @@ end
 
 ### Repositories and entities
 
-we need a way to read and write to our database. There are two types of objects that we’ll use for this:
+We need a way to read and write to our database. There are two types of objects that we’ll use for this:
 
 - An entity is a domain object (a Book) that is uniquely identified by its identity,
 - A repository is what we use to persist, retrieve, and delete data for an entity, in the persistence layer.
@@ -84,6 +71,9 @@ we need a way to read and write to our database. There are two types of objects 
 - Since entities are completely decoupled from the database, we use repositories to persist the data
 - An entity is something really close to a plain Ruby object.
 - The repository is also the place where you would define new methods to implement custom queries.
+
+#### Entities
+An entity is something really close to a plain Ruby object. We use them to model the behavior we want from a concept (a book, in this case)
 
 ##### Code example of Repositories usage
 
@@ -98,3 +88,6 @@ $ bundle exec hanami console
 >> repository.find(book.id)
   # => #<Book:0x007f9ab6181610 @attributes={:id=>1, :title=>"TDD", :author=>"Kent Beck", :created_at=>2018-10-24 11:11:38 UTC, :updated_at=>2018-10-24 11:11:38 UTC}>
 ```
+### Expose method on Actions
+
+By using the expose method in our action class, we can expose the contents of our @books instance variable to the outside world, so that Hanami can pass it to the view. That’s enough to make all our tests pass again!
